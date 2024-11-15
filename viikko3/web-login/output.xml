@@ -1,0 +1,239 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<robot generator="Robot 7.1.1 (Python 3.11.5 on win32)" generated="2024-11-15T16:20:26.090412" rpa="false" schemaversion="5">
+<suite id="s1" name="Register" source="C:\Users\nepsu\ohtutehtävät\viikko3\web-login\src\tests\register.robot">
+<kw name="Open And Configure Browser" owner="resource" type="SETUP">
+<if>
+<branch type="IF" condition="$BROWSER == 'chrome'">
+<kw name="Evaluate" owner="BuiltIn">
+<msg time="2024-11-15T16:20:26.560232" level="INFO">${options} = &lt;selenium.webdriver.chrome.options.Options object at 0x000002C92D3E2A90&gt;</msg>
+<var>${options}</var>
+<arg>sys.modules['selenium.webdriver'].ChromeOptions()</arg>
+<arg>sys</arg>
+<doc>Evaluates the given expression in Python and returns the result.</doc>
+<status status="PASS" start="2024-11-15T16:20:26.560232" elapsed="0.000000"/>
+</kw>
+<status status="PASS" start="2024-11-15T16:20:26.556986" elapsed="0.004282"/>
+</branch>
+<branch type="ELSE IF" condition="$BROWSER == 'firefox'">
+<kw name="Evaluate" owner="BuiltIn">
+<var>${options}</var>
+<arg>sys.modules['selenium.webdriver'].FirefoxOptions()</arg>
+<arg>sys</arg>
+<doc>Evaluates the given expression in Python and returns the result.</doc>
+<status status="NOT RUN" start="2024-11-15T16:20:26.561268" elapsed="0.000000"/>
+</kw>
+<status status="NOT RUN" start="2024-11-15T16:20:26.561268" elapsed="0.000000"/>
+</branch>
+<status status="PASS" start="2024-11-15T16:20:26.556986" elapsed="0.004282"/>
+</if>
+<if>
+<branch type="IF" condition="$HEADLESS == 'true'">
+<kw name="Set Selenium Speed" owner="SeleniumLibrary">
+<arg>0</arg>
+<doc>Sets the delay that is waited after each Selenium command.</doc>
+<status status="NOT RUN" start="2024-11-15T16:20:26.561268" elapsed="0.000000"/>
+</kw>
+<kw name="Call Method" owner="BuiltIn">
+<arg>${options}</arg>
+<arg>add_argument</arg>
+<arg>--headless</arg>
+<doc>Calls the named method of the given object with the provided arguments.</doc>
+<status status="NOT RUN" start="2024-11-15T16:20:26.561268" elapsed="0.000000"/>
+</kw>
+<status status="NOT RUN" start="2024-11-15T16:20:26.561268" elapsed="0.000000"/>
+</branch>
+<branch type="ELSE">
+<kw name="Set Selenium Speed" owner="SeleniumLibrary">
+<arg>${DELAY}</arg>
+<doc>Sets the delay that is waited after each Selenium command.</doc>
+<status status="PASS" start="2024-11-15T16:20:26.561268" elapsed="0.001008"/>
+</kw>
+<status status="PASS" start="2024-11-15T16:20:26.561268" elapsed="0.001008"/>
+</branch>
+<status status="PASS" start="2024-11-15T16:20:26.561268" elapsed="0.001008"/>
+</if>
+<kw name="Open Browser" owner="SeleniumLibrary">
+<msg time="2024-11-15T16:20:26.562276" level="INFO">Opening browser 'chrome' to base url 'None'.</msg>
+<arg>browser=${BROWSER}</arg>
+<arg>options=${options}</arg>
+<doc>Opens a new browser instance to the optional ``url``.</doc>
+<status status="PASS" start="2024-11-15T16:20:26.562276" elapsed="1.454019"/>
+</kw>
+<status status="PASS" start="2024-11-15T16:20:26.556986" elapsed="1.459309"/>
+</kw>
+<test id="s1-t1" name="Login After Failed Registeration" line="70">
+<kw name="Reset Application Create User And Go To Register Page" type="SETUP">
+<kw name="Reset Application" owner="AppLibrary">
+<status status="PASS" start="2024-11-15T16:20:28.017295" elapsed="2.037481"/>
+</kw>
+<kw name="Create User" owner="AppLibrary">
+<arg>kalle</arg>
+<arg>kalle123</arg>
+<status status="PASS" start="2024-11-15T16:20:30.054776" elapsed="4.088636"/>
+</kw>
+<kw name="Go To" owner="SeleniumLibrary">
+<msg time="2024-11-15T16:20:34.144341" level="INFO">Opening url 'http://localhost:5001/register'</msg>
+<arg>${REGISTER_URL}</arg>
+<doc>Navigates the current browser window to the provided ``url``.</doc>
+<status status="PASS" start="2024-11-15T16:20:34.143412" elapsed="0.863017"/>
+</kw>
+<status status="PASS" start="2024-11-15T16:20:28.016295" elapsed="6.990134"/>
+</kw>
+<kw name="Set Username">
+<kw name="Input Text" owner="SeleniumLibrary">
+<msg time="2024-11-15T16:20:35.008535" level="INFO">Typing text 'kisu' into text field 'username'.</msg>
+<arg>username</arg>
+<arg>${username}</arg>
+<doc>Types the given ``text`` into the text field identified by ``locator``.</doc>
+<status status="PASS" start="2024-11-15T16:20:35.007460" elapsed="1.649431"/>
+</kw>
+<arg>kisu</arg>
+<status status="PASS" start="2024-11-15T16:20:35.007460" elapsed="1.650031"/>
+</kw>
+<kw name="Set Password">
+<kw name="Input Password" owner="SeleniumLibrary">
+<msg time="2024-11-15T16:20:36.658499" level="INFO">Typing password into text field 'password'.</msg>
+<msg time="2024-11-15T16:20:37.723922" level="INFO">Temporally setting log level to: NONE</msg>
+<arg>password</arg>
+<arg>${password}</arg>
+<doc>Types the given password into the text field identified by ``locator``.</doc>
+<status status="PASS" start="2024-11-15T16:20:36.658499" elapsed="1.627248"/>
+</kw>
+<arg>kisukisu123</arg>
+<status status="PASS" start="2024-11-15T16:20:36.657491" elapsed="1.628764"/>
+</kw>
+<kw name="Set Password Confirmation">
+<kw name="Input Password" owner="SeleniumLibrary">
+<msg time="2024-11-15T16:20:38.287269" level="INFO">Typing password into text field 'password_confirmation'.</msg>
+<msg time="2024-11-15T16:20:39.333423" level="INFO">Temporally setting log level to: NONE</msg>
+<arg>password_confirmation</arg>
+<arg>${password_confirmation}</arg>
+<doc>Types the given password into the text field identified by ``locator``.</doc>
+<status status="PASS" start="2024-11-15T16:20:38.287269" elapsed="1.612947"/>
+</kw>
+<arg>kisukisu145</arg>
+<status status="PASS" start="2024-11-15T16:20:38.286255" elapsed="1.613961"/>
+</kw>
+<kw name="Submit Registeration Credentials">
+<kw name="Click Button" owner="SeleniumLibrary">
+<msg time="2024-11-15T16:20:39.901371" level="INFO">Clicking button 'Register'.</msg>
+<arg>Register</arg>
+<doc>Clicks the button identified by ``locator``.</doc>
+<status status="PASS" start="2024-11-15T16:20:39.901371" elapsed="2.416075"/>
+</kw>
+<status status="PASS" start="2024-11-15T16:20:39.900216" elapsed="2.417230"/>
+</kw>
+<kw name="Registeration Should Fail With Message">
+<kw name="Register Page Should Be Open">
+<kw name="Title Should Be" owner="SeleniumLibrary">
+<msg time="2024-11-15T16:20:42.834341" level="INFO">Page title is 'Register'.</msg>
+<arg>Register</arg>
+<doc>Verifies that the current page title equals ``title``.</doc>
+<status status="PASS" start="2024-11-15T16:20:42.319574" elapsed="0.514767"/>
+</kw>
+<status status="PASS" start="2024-11-15T16:20:42.318553" elapsed="0.515788"/>
+</kw>
+<kw name="Page Should Contain" owner="SeleniumLibrary">
+<msg time="2024-11-15T16:20:43.864588" level="INFO">Current page contains text 'Password and password confirmation do not match'.</msg>
+<arg>${message}</arg>
+<doc>Verifies that current page contains ``text``.</doc>
+<status status="PASS" start="2024-11-15T16:20:42.834341" elapsed="1.030247"/>
+</kw>
+<arg>Password and password confirmation do not match</arg>
+<status status="PASS" start="2024-11-15T16:20:42.318553" elapsed="1.546035"/>
+</kw>
+<kw name="Submit Login">
+<kw name="Click Link" owner="SeleniumLibrary">
+<msg time="2024-11-15T16:20:43.866603" level="INFO">Clicking link 'Login'.</msg>
+<arg>Login</arg>
+<doc>Clicks a link identified by ``locator``.</doc>
+<status status="PASS" start="2024-11-15T16:20:43.865605" elapsed="1.961029"/>
+</kw>
+<status status="PASS" start="2024-11-15T16:20:43.865605" elapsed="1.961029"/>
+</kw>
+<kw name="Title Should Be" owner="SeleniumLibrary">
+<msg time="2024-11-15T16:20:46.338686" level="INFO">Page title is 'Login'.</msg>
+<arg>Login</arg>
+<doc>Verifies that the current page title equals ``title``.</doc>
+<status status="PASS" start="2024-11-15T16:20:45.827641" elapsed="0.511045"/>
+</kw>
+<kw name="Set Username">
+<kw name="Input Text" owner="SeleniumLibrary">
+<msg time="2024-11-15T16:20:46.340273" level="INFO">Typing text 'kisu' into text field 'username'.</msg>
+<arg>username</arg>
+<arg>${username}</arg>
+<doc>Types the given ``text`` into the text field identified by ``locator``.</doc>
+<status status="PASS" start="2024-11-15T16:20:46.340273" elapsed="1.640176"/>
+</kw>
+<arg>kisu</arg>
+<status status="PASS" start="2024-11-15T16:20:46.339267" elapsed="1.641182"/>
+</kw>
+<kw name="Set Password">
+<kw name="Input Password" owner="SeleniumLibrary">
+<msg time="2024-11-15T16:20:47.983468" level="INFO">Typing password into text field 'password'.</msg>
+<msg time="2024-11-15T16:20:49.029521" level="INFO">Temporally setting log level to: NONE</msg>
+<arg>password</arg>
+<arg>${password}</arg>
+<doc>Types the given password into the text field identified by ``locator``.</doc>
+<status status="PASS" start="2024-11-15T16:20:47.982472" elapsed="1.618440"/>
+</kw>
+<arg>kisukisu123</arg>
+<status status="PASS" start="2024-11-15T16:20:47.981470" elapsed="1.619442"/>
+</kw>
+<kw name="Submit Credentials">
+<kw name="Click Button" owner="SeleniumLibrary">
+<msg time="2024-11-15T16:20:49.602979" level="INFO">Clicking button 'Login'.</msg>
+<arg>Login</arg>
+<doc>Clicks the button identified by ``locator``.</doc>
+<status status="PASS" start="2024-11-15T16:20:49.602979" elapsed="2.142928"/>
+</kw>
+<status status="PASS" start="2024-11-15T16:20:49.601994" elapsed="2.143913"/>
+</kw>
+<kw name="Login Should Fail With Message">
+<kw name="Login Page Should Be Open" owner="resource">
+<kw name="Title Should Be" owner="SeleniumLibrary">
+<msg time="2024-11-15T16:20:52.259585" level="INFO">Page title is 'Login'.</msg>
+<arg>Login</arg>
+<doc>Verifies that the current page title equals ``title``.</doc>
+<status status="PASS" start="2024-11-15T16:20:51.748102" elapsed="0.511483"/>
+</kw>
+<status status="PASS" start="2024-11-15T16:20:51.747105" elapsed="0.512480"/>
+</kw>
+<kw name="Page Should Contain" owner="SeleniumLibrary">
+<msg time="2024-11-15T16:20:53.290949" level="INFO">Current page contains text 'Invalid username or password'.</msg>
+<arg>${message}</arg>
+<doc>Verifies that current page contains ``text``.</doc>
+<status status="PASS" start="2024-11-15T16:20:52.259585" elapsed="1.031364"/>
+</kw>
+<arg>Invalid username or password</arg>
+<status status="PASS" start="2024-11-15T16:20:51.747105" elapsed="1.543844"/>
+</kw>
+<status status="PASS" start="2024-11-15T16:20:28.016295" elapsed="25.275661"/>
+</test>
+<kw name="Close Browser" owner="SeleniumLibrary" type="TEARDOWN">
+<doc>Closes the current browser.</doc>
+<status status="PASS" start="2024-11-15T16:20:53.293965" elapsed="2.582839"/>
+</kw>
+<status status="PASS" start="2024-11-15T16:20:26.091413" elapsed="29.786321"/>
+</suite>
+<statistics>
+<total>
+<stat pass="1" fail="0" skip="0">All Tests</stat>
+</total>
+<tag>
+</tag>
+<suite>
+<stat pass="1" fail="0" skip="0" id="s1" name="Register">Register</stat>
+</suite>
+</statistics>
+<errors>
+<msg time="2024-11-15T16:20:26.552406" level="ERROR">Error in file 'C:\Users\nepsu\ohtutehtävät\viikko3\web-login\src\tests\login.robot' on line 3: Setting 'Suite Setup' is not allowed in resource file.</msg>
+<msg time="2024-11-15T16:20:26.552675" level="ERROR">Error in file 'C:\Users\nepsu\ohtutehtävät\viikko3\web-login\src\tests\login.robot' on line 4: Setting 'Suite Teardown' is not allowed in resource file.</msg>
+<msg time="2024-11-15T16:20:26.552675" level="ERROR">Error in file 'C:\Users\nepsu\ohtutehtävät\viikko3\web-login\src\tests\login.robot' on line 5: Setting 'Test Setup' is not allowed in resource file.</msg>
+<msg time="2024-11-15T16:20:26.552675" level="ERROR">Error in file 'C:\Users\nepsu\ohtutehtävät\viikko3\web-login\src\tests\register.robot' on line 3: Error in file 'C:\Users\nepsu\ohtutehtävät\viikko3\web-login\src\tests\login.robot' on line 7: Resource file with 'Test Cases' section is invalid.</msg>
+<msg time="2024-11-15T16:20:26.554695" level="ERROR">Error in file 'C:\Users\nepsu\ohtutehtävät\viikko3\web-login\src\tests\home.robot' on line 3: Setting 'Suite Setup' is not allowed in resource file.</msg>
+<msg time="2024-11-15T16:20:26.554695" level="ERROR">Error in file 'C:\Users\nepsu\ohtutehtävät\viikko3\web-login\src\tests\home.robot' on line 4: Setting 'Suite Teardown' is not allowed in resource file.</msg>
+<msg time="2024-11-15T16:20:26.554695" level="ERROR">Error in file 'C:\Users\nepsu\ohtutehtävät\viikko3\web-login\src\tests\home.robot' on line 5: Setting 'Test Setup' is not allowed in resource file.</msg>
+<msg time="2024-11-15T16:20:26.554695" level="ERROR">Error in file 'C:\Users\nepsu\ohtutehtävät\viikko3\web-login\src\tests\register.robot' on line 4: Error in file 'C:\Users\nepsu\ohtutehtävät\viikko3\web-login\src\tests\home.robot' on line 7: Resource file with 'Test Cases' section is invalid.</msg>
+</errors>
+</robot>
